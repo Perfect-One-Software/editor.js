@@ -112,6 +112,7 @@ export default class Block extends EventsDispatcher<BlockEvents> {
       wrapperStretched: 'ce-block--stretched',
       content: 'ce-block__content',
       selected: 'ce-block--selected',
+      active: 'ce-block--active',
       dropTarget: 'ce-block--drop-target',
     };
   }
@@ -480,6 +481,24 @@ export default class Block extends EventsDispatcher<BlockEvents> {
 
   /**
    * Return Block's stretched state
+   *
+   * @returns {boolean}
+   */
+  public get active(): boolean {
+    return this.holder.classList.contains(Block.CSS.active);
+  }
+
+  /**
+   * Set active state
+   *
+   * @param {boolean} state - 'true' to enable, 'false' to disable active state
+   */
+  public set active(state: boolean) {
+    this.holder.classList.toggle(Block.CSS.active, state);
+  }
+
+  /**
+   * Return Block's active state
    *
    * @returns {boolean}
    */

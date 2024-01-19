@@ -16,6 +16,10 @@
     margin-top: 0;
   }
 
+  &--active &__content {
+    background: var(--activeColor);
+  }
+
   &--selected &__content {
     background: var(--selectionColor);
 

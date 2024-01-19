@@ -709,7 +709,22 @@ export default class BlockManager extends Module {
      */
     this.currentBlock.updateCurrentInput();
 
+    /**
+     * Trigger config toolbar selection event and set active block
+     */
+    if (this.config.blockActivationState) {
+      this.deactivateBlocks();
+      this.Editor.ConfigToolbar.activate(this.currentBlock);
+      this.currentBlock.active = true;
+    }
+
     return this.currentBlock;
+  }
+
+  public deactivateBlocks(): void {
+    this.blocks.forEach((block) => {
+      block.active = false;
+    })
   }
 
   /**

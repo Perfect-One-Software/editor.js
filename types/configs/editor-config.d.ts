@@ -17,6 +17,16 @@ export interface EditorConfig {
   holder?: string | HTMLElement;
 
   /**
+   * If true, toolbar won't be shown
+   */
+  hideConfigToolbar?: boolean;
+
+  /**
+   * If true, block get active class after click
+   */
+  blockActivationState?: boolean;
+
+  /**
    * If true, set caret at the first Block after Editor is ready
    */
   autofocus?: boolean;

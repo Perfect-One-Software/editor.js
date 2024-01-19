@@ -168,7 +168,7 @@ export default class ConfigToolbar extends Module<ToolbarNodes> {
    * @param {boolean} readOnlyEnabled - read-only mode
    */
   public toggleReadOnly(readOnlyEnabled: boolean): void {
-    if (!readOnlyEnabled) {
+    if (!readOnlyEnabled && !(this.config.hideConfigToolbar ?? true)) {
       window.requestIdleCallback(() => {
         this.drawUI();
         this.enableModuleBindings();
@@ -244,6 +244,10 @@ export default class ConfigToolbar extends Module<ToolbarNodes> {
     /** Close components */
     this.blockActions.hide();
     this.reset();
+  }
+
+  public activate(block: Block): void {
+    this.emitBlockSettingsClicked(block);
   }
 
   /**
@@ -334,7 +338,7 @@ export default class ConfigToolbar extends Module<ToolbarNodes> {
        */
       e.stopPropagation();
 
-      this.settingsTogglerClicked();
+      this.settingsToggleClicked();
 
       tooltip.hide(true);
     }, true);
@@ -364,13 +368,17 @@ export default class ConfigToolbar extends Module<ToolbarNodes> {
   /**
    * Clicks on the Block Settings toggler
    */
-  private settingsTogglerClicked(): void {
+  private settingsToggleClicked(): void {
     /**
      * We need to update Current Block because user can click on toggler (thanks to appearing by hover) without any clicks on editor
      * In this case currentBlock will point last block
      */
     this.Editor.BlockManager.currentBlock = this.hoveredBlock;
-    this.eventsDispatcher.emit(SettingsClicked, { block: this.hoveredBlock });
+    this.emitBlockSettingsClicked(this.hoveredBlock);
+  }
+
+  private emitBlockSettingsClicked(block: Block): void {
+    this.eventsDispatcher.emit(SettingsClicked, { block });
   }
 
   /**

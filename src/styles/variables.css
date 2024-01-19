@@ -13,6 +13,11 @@
   --inlineSelectionColor: #d4ecff;
 
   /**
+   * Active color
+   */
+  --activeColor: #e1f2ff;
+
+  /**
    * Toolbar buttons
    */
   --bg-light: #eff2f5;
