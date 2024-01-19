@@ -490,6 +490,7 @@ export default class UI extends Module<UINodes> {
      * Close Toolbar
      */
     this.Editor.Toolbar.close();
+    this.Editor.ConfigToolbar.close();
   }
 
   /**
@@ -597,6 +598,7 @@ export default class UI extends Module<UINodes> {
        * Move toolbar and show plus button because new Block is empty
        */
       this.Editor.Toolbar.moveAndOpen(newBlock);
+      this.Editor.ConfigToolbar.moveAndOpen(newBlock);
     }
 
     this.Editor.BlockSelection.clearSelection(event);
@@ -649,6 +651,7 @@ export default class UI extends Module<UINodes> {
       const clickedBlock = this.Editor.BlockManager.getBlockByChildNode(target);
 
       this.Editor.Toolbar.moveAndOpen(clickedBlock);
+      this.Editor.ConfigToolbar.moveAndOpen(clickedBlock);
     }
 
     /**
@@ -700,6 +703,7 @@ export default class UI extends Module<UINodes> {
      * (used for showing Block Settings toggler after opening and closing Inline Toolbar)
      */
     this.Editor.Toolbar.moveAndOpen();
+    this.Editor.ConfigToolbar.moveAndOpen();
   }
 
   /**
@@ -767,7 +771,7 @@ export default class UI extends Module<UINodes> {
       event.stopImmediatePropagation();
       event.stopPropagation();
 
-      const { BlockManager, Caret, Toolbar } = this.Editor;
+      const { BlockManager, Caret, Toolbar, ConfigToolbar } = this.Editor;
 
       /**
        * Insert a default-block at the bottom if:
@@ -784,6 +788,7 @@ export default class UI extends Module<UINodes> {
        */
       Caret.setToTheLastBlock();
       Toolbar.moveAndOpen(BlockManager.lastBlock);
+      ConfigToolbar.moveAndOpen(BlockManager.lastBlock);
     }
   }
 

@@ -16,6 +16,11 @@
         "Add": ""
       }
     },
+    "configToolbar": {
+      "toolbox": {
+        "Open": ""
+      }
+    },
     "popover": {
       "Filter": "",
       "Nothing found": ""

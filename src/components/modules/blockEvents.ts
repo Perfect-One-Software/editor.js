@@ -239,6 +239,7 @@ export default class BlockEvents extends Module {
     }
 
     this.activateToolbox();
+    this.activateConfigToolbox();
   }
 
   /**
@@ -301,6 +302,7 @@ export default class BlockEvents extends Module {
      * Show Toolbar
      */
     this.Editor.Toolbar.moveAndOpen(newCurrent);
+    this.Editor.ConfigToolbar.moveAndOpen(newCurrent);
 
     event.preventDefault();
   }
@@ -332,6 +334,7 @@ export default class BlockEvents extends Module {
      */
     event.preventDefault();
     this.Editor.Toolbar.close();
+    this.Editor.ConfigToolbar.close();
 
     const isFirstInputFocused = currentBlock.currentInput === currentBlock.firstInput;
 
@@ -416,6 +419,7 @@ export default class BlockEvents extends Module {
      */
     event.preventDefault();
     this.Editor.Toolbar.close();
+    this.Editor.ConfigToolbar.close();
 
     const isLastInputFocused = currentBlock.currentInput === currentBlock.lastInput;
 
@@ -475,7 +479,7 @@ export default class BlockEvents extends Module {
    * @param blockToMerge - what Block we want to merge
    */
   private mergeBlocks(targetBlock: Block, blockToMerge: Block): void {
-    const { BlockManager, Caret, Toolbar } = this.Editor;
+    const { BlockManager, Caret, Toolbar, ConfigToolbar } = this.Editor;
 
     Caret.createShadow(targetBlock.pluginsContent);
 
@@ -487,6 +491,7 @@ export default class BlockEvents extends Module {
           Caret.restoreCaret(targetBlock.pluginsContent as HTMLElement);
           targetBlock.pluginsContent.normalize();
           Toolbar.close();
+          ConfigToolbar.close();
         });
       });
   }
@@ -512,6 +517,7 @@ export default class BlockEvents extends Module {
      * Close Toolbar when user moves cursor
      */
     this.Editor.Toolbar.close();
+    this.Editor.ConfigToolbar.close();
 
     const shouldEnableCBS = this.Editor.Caret.isAtEnd || this.Editor.BlockSelection.anyBlockSelected;
 
@@ -572,6 +578,7 @@ export default class BlockEvents extends Module {
      * Close Toolbar when user moves cursor
      */
     this.Editor.Toolbar.close();
+    this.Editor.ConfigToolbar.close();
 
     const shouldEnableCBS = this.Editor.Caret.isAtStart || this.Editor.BlockSelection.anyBlockSelected;
 
@@ -648,12 +655,19 @@ export default class BlockEvents extends Module {
     this.Editor.Toolbar.toolbox.open();
   }
 
+  private activateConfigToolbox(): void {
+    if (!this.Editor.ConfigToolbar.opened) {
+      this.Editor.ConfigToolbar.moveAndOpen();
+    } // else Flipper will leaf through it
+  }
+
   /**
    * Open Toolbar and show BlockSettings before flipping Tools
    */
   private activateBlockSettings(): void {
     if (!this.Editor.Toolbar.opened) {
       this.Editor.Toolbar.moveAndOpen();
+      this.Editor.ConfigToolbar.moveAndOpen();
     }
 
     /**

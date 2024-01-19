@@ -1,6 +1,7 @@
 @import './variables.css';
 @import './ui.css';
 @import './toolbar.css';
+@import './configToolbar.css';
 @import './toolbox.css';
 @import './inline-toolbar.css';
 @import './conversion-toolbar.css';

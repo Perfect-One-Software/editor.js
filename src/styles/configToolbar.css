@@ -1,0 +1,72 @@
+.ce-config-toolbar {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  transition: opacity 100ms ease;
+  will-change: opacity, top;
+  display: none;
+
+  @media (--mobile){
+    left: auto;
+  }
+
+  &--opened {
+    display: block;
+  }
+
+  &__content {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /**
+   * Block actions Zone
+   * -------------------------
+   */
+  &__actions {
+    position: absolute;
+    left: 100%;
+    opacity: 0;
+    display: flex;
+    padding-left: 5px;
+
+    &--opened {
+      opacity: 1;
+    }
+
+    @media (--mobile){
+      left: -48px;
+    }
+  }
+
+  &__settings-btn {
+    @apply --toolbox-button;
+
+    margin-left: 3px;
+    cursor: pointer;
+    user-select: none;
+
+
+    @media (--not-mobile){
+      width: 24px;
+    }
+
+    &--hidden {
+      display: none;
+    }
+
+    @media (--mobile){
+      @apply --overlay-pane;
+      position: static;
+    }
+  }
+
+  &__settings-btn {
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
