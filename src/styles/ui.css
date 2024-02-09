@@ -23,11 +23,11 @@
   /**
    * Styles for narrow holder
    */
-  &--narrow &__redactor {
-    @media (--not-mobile) {
-      margin-right: var(--narrow-mode-right-padding);
-    }
-  }
+  /*&--narrow &__redactor {*/
+  /*  @media (--not-mobile) {*/
+  /*    margin-right: var(--narrow-mode-right-padding);*/
+  /*  }*/
+  /*}*/
 
   &--narrow&--rtl &__redactor {
     @media (--not-mobile) {
@@ -36,11 +36,11 @@
     }
   }
 
-  &--narrow .ce-toolbar__actions {
-    @media (--not-mobile) {
-      right: -5px;
-    }
-  }
+  /*&--narrow .ce-toolbar__actions {*/
+  /*  @media (--not-mobile) {*/
+  /*    right: -5px;*/
+  /*  }*/
+  /*}*/
 
   &-copyable {
     position: absolute;

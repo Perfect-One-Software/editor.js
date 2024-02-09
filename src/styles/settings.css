@@ -23,11 +23,11 @@
   }
 }
 
-.codex-editor--narrow .ce-settings {
-  @media (--not-mobile){
-    .ce-popover {
-      right: 0;
-      left: unset;
-    }
-  }
-}
+/*.codex-editor--narrow .ce-settings {*/
+/*  @media (--not-mobile){*/
+/*    .ce-popover {*/
+/*      right: 0;*/
+/*      left: unset;*/
+/*    }*/
+/*  }*/
+/*}*/
