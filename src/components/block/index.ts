@@ -3,10 +3,10 @@ import {
   BlockTool as IBlockTool,
   BlockToolData,
   BlockTune as IBlockTune,
+  PopoverItem,
   SanitizerConfig,
-  ToolConfig,
   ToolboxConfigEntry,
-  PopoverItem
+  ToolConfig
 } from '../../../types';
 
 import { SavedData } from '../../../types/data-formats';
@@ -55,6 +55,8 @@ interface BlockConstructorOptions {
    * This flag indicates that the Block should be constructed in the read-only mode.
    */
   readOnly: boolean;
+
+  editable?: boolean;
 
   /**
    * Tunes data for current Block
@@ -126,6 +128,11 @@ export default class Block extends EventsDispatcher<BlockEvents> {
    * Block Tool`s name
    */
   public readonly name: string;
+
+  /**
+   * Is block editable
+   */
+  public readonly editable?: boolean;
 
   /**
    * Instance of the Tool Block represents
@@ -221,14 +228,18 @@ export default class Block extends EventsDispatcher<BlockEvents> {
    * @param options.readOnly - Read-Only flag
    * @param [eventBus] - Editor common event bus. Allows to subscribe on some Editor events. Could be omitted when "virtual" Block is created. See BlocksAPI@composeBlockData.
    */
-  constructor({
-    id = _.generateBlockId(),
-    data,
-    tool,
-    api,
-    readOnly,
-    tunesData,
-  }: BlockConstructorOptions, eventBus?: EventsDispatcher<EditorEventMap>) {
+  constructor(
+    {
+      id = _.generateBlockId(),
+      data,
+      tool,
+      api,
+      readOnly,
+      tunesData,
+      editable,
+    }: BlockConstructorOptions,
+    eventBus?: EventsDispatcher<EditorEventMap>,
+  ) {
     super();
 
     this.name = tool.name;
@@ -236,6 +247,7 @@ export default class Block extends EventsDispatcher<BlockEvents> {
     this.settings = tool.settings;
     this.config = tool.settings.config || {};
     this.api = api;
+    this.editable = editable;
     this.editorEventBus = eventBus || null;
     this.blockAPI = new BlockAPI(this);
 
@@ -327,6 +339,15 @@ export default class Block extends EventsDispatcher<BlockEvents> {
    */
   public get firstInput(): HTMLElement {
     return this.inputs[0];
+  }
+
+  /**
+   * Return if block is editable
+   *
+   * @returns {boolean}
+   */
+  public get isEditable(): boolean {
+    return this.editable !== false;
   }
 
   /**

@@ -67,6 +67,15 @@ function BlockAPI(
     },
 
     /**
+     * True if Block is editable/deletable
+     *
+     * @returns {boolean}
+     */
+    get editable(): boolean {
+      return !!block.editable;
+    },
+
+    /**
      * Set Block's stretch state
      *
      * @param {boolean} state — state to set
@@ -107,7 +116,7 @@ function BlockAPI(
      *
      * @returns {Promise<void|SavedData>}
      */
-    save(): Promise<void|SavedData> {
+    save(): Promise<void | SavedData> {
       return block.save();
     },
 

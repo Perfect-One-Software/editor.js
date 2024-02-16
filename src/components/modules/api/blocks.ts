@@ -143,6 +143,10 @@ export default class BlocksAPI extends Module {
   public delete(blockIndex: number = this.Editor.BlockManager.currentBlockIndex): void {
     try {
       const block = this.Editor.BlockManager.getBlockByIndex(blockIndex);
+      if (!block.editable) {
+        _.log('block not deletable')
+        return;
+      }
 
       this.Editor.BlockManager.removeBlock(block);
     } catch (e) {

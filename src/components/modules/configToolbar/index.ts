@@ -188,7 +188,7 @@ export default class ConfigToolbar extends Module<ToolbarNodes> {
     /**
      * If no one Block selected as a Current
      */
-    if (!block) {
+    if (!block || !this.nodes.wrapper) {
       return;
     }
 

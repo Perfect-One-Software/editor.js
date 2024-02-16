@@ -232,8 +232,10 @@ export default class BlockManager extends Module {
     data = {},
     id = undefined,
     tunes: tunesData = {},
-  }: {tool: string; id?: string; data?: BlockToolData; tunes?: {[name: string]: BlockTuneData}}): Block {
+    editable = true,
+  }: {tool: string; id?: string; editable?: boolean; data?: BlockToolData; tunes?: {[name: string]: BlockTuneData}}): Block {
     const readOnly = this.Editor.ReadOnly.isEnabled;
+
     const tool = this.Editor.Tools.blockTools.get(name);
     const block = new Block({
       id,
@@ -242,6 +244,7 @@ export default class BlockManager extends Module {
       api: this.Editor.API,
       readOnly,
       tunesData,
+      editable,
     }, this.eventsDispatcher);
 
     if (!readOnly) {

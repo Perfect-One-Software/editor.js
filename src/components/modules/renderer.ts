@@ -24,7 +24,7 @@ export default class Renderer extends Module {
         /**
          * Create Blocks instances
          */
-        const blocks = blocksData.map(({ type: tool, data, tunes, id }) => {
+        const blocks = blocksData.map(({ type: tool, data, tunes, editable, id }) => {
           if (Tools.available.has(tool) === false) {
             _.logLabeled(`Tool «${tool}» is not found. Check 'tools' property at the Editor.js config.`, 'warn');
 
@@ -40,6 +40,7 @@ export default class Renderer extends Module {
               tool,
               data,
               tunes,
+              editable,
             });
           } catch (error) {
             _.log(`Block «${tool}» skipped because of plugins error`, 'error', {
@@ -58,6 +59,7 @@ export default class Renderer extends Module {
               tool,
               data,
               tunes,
+              editable,
             });
           }
 

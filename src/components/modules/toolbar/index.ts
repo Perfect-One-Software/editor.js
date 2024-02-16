@@ -469,7 +469,9 @@ export default class Toolbar extends Module<ToolbarNodes> {
        */
       if (newBlock.inputs.length === 0) {
         if (newBlock === BlockManager.lastBlock) {
-          BlockManager.insertAtEnd();
+          if (this.config.insertDefaultBlockOnEvents) {
+            BlockManager.insertAtEnd();
+          }
           Caret.setToBlock(BlockManager.lastBlock);
         } else {
           Caret.setToBlock(BlockManager.nextBlock);

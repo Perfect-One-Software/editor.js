@@ -557,6 +557,9 @@ export default class Caret extends Module {
     const wrapper = document.createElement('div');
     const selection = Selection.get();
     const range = Selection.range;
+    if (!range) {
+      return;
+    }
 
     wrapper.innerHTML = content;
 

@@ -41,6 +41,11 @@ export interface BlockAPI {
   readonly focusable: boolean;
 
   /**
+   * True if Block can be edited/deleted
+   */
+  readonly editable: boolean;
+
+  /**
    * Setter sets Block's stretch state
    *
    * Getter returns true if Block is stretched

@@ -41,7 +41,7 @@ export type TunesMenuConfigItem = PopoverItem & {
   /**
    * Tune displayed text.
    * Alias for title property
-   * 
+   *
    * @deprecated - use title property instead
    */
   label?: string

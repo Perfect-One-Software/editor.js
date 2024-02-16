@@ -22,6 +22,11 @@ export interface EditorConfig {
   hideConfigToolbar?: boolean;
 
   /**
+   * If true, toolbar won't be shown
+   */
+  insertDefaultBlockOnEvents?: boolean;
+
+  /**
    * If true, block get active class after click
    */
   blockActivationState?: boolean;

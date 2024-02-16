@@ -118,6 +118,13 @@ export default class Core {
       this.config.holder = 'editorjs';
     }
 
+    /**
+     * Backwards compatibility. Set true for default behaviour
+     */
+    if (this.config.insertDefaultBlockOnEvents === null || this.config.insertDefaultBlockOnEvents === undefined) {
+      this.config.insertDefaultBlockOnEvents = true;
+    }
+
     if (!this.config.logLevel) {
       this.config.logLevel = _.LogLevels.VERBOSE;
     }

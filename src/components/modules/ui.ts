@@ -614,7 +614,7 @@ export default class UI extends Module<UINodes> {
      * Sometimes we emulate click on some UI elements, for example by Enter on Block Settings button
      * We don't need to handle such events, because they handled in other place.
      */
-    if (!event.isTrusted) {
+    if (!event.isTrusted && !this.config.insertDefaultBlockOnEvents) {
       return;
     }
     /**
@@ -771,6 +771,9 @@ export default class UI extends Module<UINodes> {
       event.stopImmediatePropagation();
       event.stopPropagation();
 
+      if (!this.config.insertDefaultBlockOnEvents) {
+        return;
+      }
       const { BlockManager, Caret, Toolbar, ConfigToolbar } = this.Editor;
 
       /**
