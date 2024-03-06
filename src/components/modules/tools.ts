@@ -110,7 +110,9 @@ export default class Tools extends Module {
     /**
      * Assign internal tools
      */
-    this.config.tools = _.deepMerge({}, this.config.addDefaultBlocks ? this.internalTools : {}, this.config.tools);
+    this.config.tools = _.deepMerge({}, this.config.addDefaultBlocks ? this.internalTools : Object.fromEntries(
+      Object.entries(this.internalTools).filter(([, v]) => v.isTune === true),
+    ), this.config.tools);
 
     if (!Object.prototype.hasOwnProperty.call(this.config, 'tools') || Object.keys(this.config.tools).length === 0) {
       throw Error('Can\'t start without tools');
@@ -174,7 +176,7 @@ export default class Tools extends Module {
    * Returns internal tools
    * Includes Bold, Italic, Link and Paragraph
    */
-  private get internalTools(): { [toolName: string]: ToolConstructable | ToolSettings & { isInternal?: boolean } } {
+  private get internalTools(): { [toolName: string]: (ToolConstructable | ToolSettings & { isInternal?: boolean }) & { isTune?: boolean } } {
     return {
       bold: {
         class: BoldInlineTool,
@@ -196,18 +198,22 @@ export default class Tools extends Module {
       stub: {
         class: Stub,
         isInternal: true,
+        isTune: true,
       },
       moveUp: {
         class: MoveUpTune,
         isInternal: true,
+        isTune: true,
       },
       delete: {
         class: DeleteTune,
         isInternal: true,
+        isTune: true,
       },
       moveDown: {
         class: MoveDownTune,
         isInternal: true,
+        isTune: true,
       },
     };
   }
