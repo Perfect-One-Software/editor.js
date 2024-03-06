@@ -110,7 +110,7 @@ export default class Tools extends Module {
     /**
      * Assign internal tools
      */
-    this.config.tools = _.deepMerge({}, this.internalTools, this.config.tools);
+    this.config.tools = _.deepMerge({}, this.config.addDefaultBlocks ? this.internalTools : {}, this.config.tools);
 
     if (!Object.prototype.hasOwnProperty.call(this.config, 'tools') || Object.keys(this.config.tools).length === 0) {
       throw Error('Can\'t start without tools');

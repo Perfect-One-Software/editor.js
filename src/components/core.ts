@@ -125,6 +125,13 @@ export default class Core {
       this.config.insertDefaultBlockOnEvents = true;
     }
 
+    /**
+     * Backwards compatibility. Set true for default behaviour
+     */
+    if (this.config.addDefaultBlocks === null || this.config.addDefaultBlocks === undefined) {
+      this.config.addDefaultBlocks = true;
+    }
+
     if (!this.config.logLevel) {
       this.config.logLevel = _.LogLevels.VERBOSE;
     }

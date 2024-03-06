@@ -27,6 +27,11 @@ export interface EditorConfig {
   insertDefaultBlockOnEvents?: boolean;
 
   /**
+   * If true, toolbar default blocks will be added
+   */
+  addDefaultBlocks?: boolean;
+
+  /**
    * If true, block get active class after click
    */
   blockActivationState?: boolean;
